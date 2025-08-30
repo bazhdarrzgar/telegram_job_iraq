@@ -1,0 +1,17 @@
+group,sender,text,date,has_image,image_path,message_id
+IraqJobz,@JobPoster1,"Software Engineer position available at a leading tech company. Requirements: 5+ years experience with React and Node.js. Salary: $80k-$120k. Apply now!","2025-08-30 09:15:23",TRUE,IraqJobz_9841_20250823_151959.jpg,12345
+RemoteJobs,@HRManager2,"Remote Frontend Developer needed. Work from anywhere! Must know TypeScript, Next.js, and Tailwind CSS. Competitive salary and benefits.","2025-08-30 10:22:15",TRUE,RemoteJobs_9843_20250824_144500.jpg,12346
+IraqJobz,@TechRecruiter,"Backend Developer opportunity - Python/Django experience required. Join our growing startup team. Great work-life balance!","2025-08-30 11:45:32",FALSE,,12347
+TechJobs,@CompanyHR,"Full Stack Developer position open. We're looking for someone with expertise in React, Node.js, and MongoDB. Remote friendly company.","2025-08-30 12:30:45",TRUE,IraqJobz_9840_20250823_151913.jpg,12348
+IraqJobz,@StartupFounder,"Marketing Manager role available. Experience in digital marketing and social media management required. Exciting opportunity!","2025-08-30 14:15:18",FALSE,,12349
+RemoteJobs,@TechLead,"Senior DevOps Engineer needed. AWS, Docker, Kubernetes experience essential. Fully remote position with excellent benefits.","2025-08-30 15:20:42",TRUE,IraqJobz_9839_20250823_151627.jpg,12350
+IraqJobz,@RecruitmentAgency,"Data Scientist position - Machine Learning and Python expertise required. Competitive package with stock options.","2025-08-29 16:45:12",FALSE,,12351
+TechJobs,@Hiring,"UI/UX Designer role open. Portfolio required. Experience with Figma and design systems. Creative and collaborative environment.","2025-08-29 09:30:25",TRUE,IraqJobz_9841_20250823_151959.jpg,12352
+IraqJobz,@JobBoard,"Project Manager opportunity in fintech startup. Agile experience required. Lead innovative projects and grow your career!","2025-08-29 11:15:33",FALSE,,12353
+RemoteJobs,@TechCompany,"Mobile App Developer (React Native) - Build the next generation of mobile apps. Remote work available worldwide.","2025-08-29 13:25:47",TRUE,RemoteJobs_9843_20250824_144500.jpg,12354
+IraqJobz,@Recruiter123,"Quality Assurance Engineer position. Automation testing experience preferred. Join our quality-focused development team.","2025-08-29 14:40:18",FALSE,,12355
+TechJobs,@StartupHR,"Blockchain Developer wanted - Solidity and Web3 experience. Work on cutting-edge DeFi projects. High compensation package.","2025-08-28 10:15:22",TRUE,IraqJobz_9840_20250823_151913.jpg,12356
+IraqJobz,@TechRecruiter2,"Cybersecurity Analyst role available. CISSP certification preferred. Protect our digital infrastructure and grow your expertise.","2025-08-28 12:30:45",FALSE,,12357
+RemoteJobs,@GlobalTech,"Cloud Architect position - Design scalable cloud solutions. AWS/Azure certification required. Fully remote with global team.","2025-08-28 15:45:13",TRUE,IraqJobz_9839_20250823_151627.jpg,12358
+IraqJobz,@JobPlatform,"Database Administrator needed. MySQL and PostgreSQL experience required. Manage critical data infrastructure.","2025-08-28 08:20:35",FALSE,,12359
+TechJobs,@TechStartup,"Product Manager role - Drive product strategy and roadmap. Experience in B2B SaaS products preferred. Equity included.","2025-08-27 16:15:28",TRUE,IraqJobz_9841_20250823_151959.jpg,12360
