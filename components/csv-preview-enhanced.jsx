@@ -115,6 +115,33 @@ export function CSVPreviewEnhanced({ data }) {
     setSortConfig({ key: null, direction: 'asc' })
   }, [])
 
+  // Handle image preview
+  const handleImagePreview = useCallback((imageSrc, imageAlt, filename) => {
+    setPreviewImage({
+      isOpen: true,
+      src: imageSrc,
+      alt: imageAlt || 'Image Preview',
+      filename: filename
+    })
+  }, [])
+
+  const closeImagePreview = useCallback(() => {
+    setPreviewImage({ isOpen: false, src: '', alt: '', filename: '' })
+  }, [])
+
+  // Get column icon
+  const getColumnIcon = (header) => {
+    switch (header.toLowerCase()) {
+      case 'group': return <Hash className="w-3 h-3" />
+      case 'sender': return <User className="w-3 h-3" />
+      case 'text': return <MessageSquare className="w-3 h-3" />
+      case 'date': return <Calendar className="w-3 h-3" />
+      case 'has_image': return <ImageIcon className="w-3 h-3" />
+      case 'image_path': return <Eye className="w-3 h-3" />
+      default: return null
+    }
+  }
+
   // Export filtered data as CSV
   const exportFilteredData = useCallback(() => {
     if (!filteredAndSearchedData.length) return
