@@ -365,7 +365,7 @@ export function CSVPreviewEnhanced({ data }) {
                                     row[header]
                                   )}
                                 />
-                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center">
+                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center pointer-events-none">
                                   <Eye className="w-6 h-6 text-white" />
                                 </div>
                               </div>
