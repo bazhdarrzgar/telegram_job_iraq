@@ -13,6 +13,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { toast } from 'sonner'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { CSVPreviewEnhanced } from '@/components/csv-preview-enhanced'
 
 export default function App() {
   const [csvFile, setCsvFile] = useState(null)
