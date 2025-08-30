@@ -18,6 +18,7 @@ export function CSVPreviewEnhanced({ data }) {
   const [filterValues, setFilterValues] = useState({})
   const [showFilters, setShowFilters] = useState(false)
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' })
+  const [previewImage, setPreviewImage] = useState({ isOpen: false, src: '', alt: '', filename: '' })
 
   // Initialize Fuse.js for fuzzy search
   const fuse = useMemo(() => {
