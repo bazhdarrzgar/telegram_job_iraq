@@ -487,14 +487,27 @@ export function CSVPreviewEnhanced({ data }) {
       </div>
 
       {/* Results Summary */}
-      <div className="text-center text-sm text-muted-foreground">
-        Showing {Math.min(filteredAndSearchedData.length, 100)} of {filteredAndSearchedData.length} filtered rows
-        {filteredAndSearchedData.length > 100 && (
-          <span className="text-orange-600 ml-2">
-            (Limited to 100 rows for performance)
+      <div className="text-center text-sm text-muted-foreground bg-muted/20 p-3 rounded-lg border">
+        <div className="flex items-center justify-center gap-4">
+          <span>
+            Showing <span className="font-bold text-foreground">{Math.min(filteredAndSearchedData.length, 100)}</span> of <span className="font-bold text-foreground">{filteredAndSearchedData.length}</span> filtered rows
           </span>
-        )}
+          {filteredAndSearchedData.length > 100 && (
+            <Badge variant="secondary" className="text-orange-600">
+              Limited to 100 rows for performance
+            </Badge>
+          )}
+        </div>
       </div>
+
+      {/* Image Preview Modal */}
+      <ImagePreviewModal
+        isOpen={previewImage.isOpen}
+        onClose={closeImagePreview}
+        imageSrc={previewImage.src}
+        imageAlt={previewImage.alt}
+        filename={previewImage.filename}
+      />
     </div>
   )
 }
