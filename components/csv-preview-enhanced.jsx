@@ -312,22 +312,25 @@ export function CSVPreviewEnhanced({ data }) {
         </div>
       </div>
 
-      {/* Data Table */}
-      <div className="border rounded-lg overflow-hidden">
-        <div className="max-h-96 overflow-auto">
+      {/* Enhanced Data Table */}
+      <div className="border rounded-lg overflow-hidden bg-card shadow-sm">
+        <div className="max-h-[600px] overflow-auto">
           <Table>
-            <TableHeader>
-              <TableRow>
+            <TableHeader className="bg-muted/30 sticky top-0 z-10">
+              <TableRow className="hover:bg-muted/50">
                 {displayColumns.map((header, index) => (
                   <TableHead 
                     key={index} 
-                    className="font-medium min-w-32 cursor-pointer hover:bg-muted/50"
+                    className="font-semibold min-w-32 cursor-pointer hover:bg-muted/70 transition-colors border-r border-muted/30 last:border-r-0"
                     onClick={() => handleSort(header)}
                   >
-                    <div className="flex items-center gap-1">
-                      {header}
+                    <div className="flex items-center gap-2 py-1">
+                      {getColumnIcon(header)}
+                      <span className="text-xs uppercase tracking-wide">
+                        {header.replace('_', ' ')}
+                      </span>
                       {sortConfig.key === header && (
-                        <span className="text-xs">
+                        <span className="text-primary font-bold">
                           {sortConfig.direction === 'asc' ? '↑' : '↓'}
                         </span>
                       )}
@@ -338,70 +341,75 @@ export function CSVPreviewEnhanced({ data }) {
             </TableHeader>
             <TableBody>
               {filteredAndSearchedData.slice(0, 100).map((row, index) => (
-                <TableRow key={index}>
+                <TableRow 
+                  key={index} 
+                  className="hover:bg-muted/20 transition-colors border-b border-muted/20"
+                >
                   {displayColumns.map((header, cellIndex) => (
-                    <TableCell key={cellIndex} className="max-w-xs">
+                    <TableCell key={cellIndex} className="border-r border-muted/10 last:border-r-0 py-3">
                       {header === 'image_path' && row[header] ? (
                         <div className="space-y-2">
-                          <div className="text-xs text-muted-foreground truncate max-w-48">
+                          <div className="text-xs text-muted-foreground truncate max-w-48 font-mono bg-muted/20 px-2 py-1 rounded">
                             {row[header]}
                           </div>
                           {row['has_image'] === 'TRUE' ? (
                             data.images && data.images[row[header]] ? (
-                              <img 
-                                src={data.images[row[header]]}
-                                alt="Preview" 
-                                className="w-20 h-20 object-cover rounded border cursor-pointer hover:scale-105 transition-transform"
-                                onClick={() => {
-                                  const newWindow = window.open('', '_blank')
-                                  newWindow.document.write(`
-                                    <html>
-                                      <body style="margin:0; display:flex; justify-content:center; align-items:center; min-height:100vh; background:#000;">
-                                        <img src="${data.images[row[header]]}" style="max-width:100%; max-height:100%; object-fit:contain;">
-                                      </body>
-                                    </html>
-                                  `)
-                                }}
-                              />
+                              <div className="relative group">
+                                <img 
+                                  src={data.images[row[header]]}
+                                  alt="Job Preview" 
+                                  className="w-24 h-24 object-cover rounded-lg border-2 border-muted cursor-pointer hover:border-primary hover:scale-105 transition-all duration-200 shadow-sm"
+                                  onClick={() => handleImagePreview(
+                                    data.images[row[header]], 
+                                    `${row['group']} - ${row['sender']}`, 
+                                    row[header]
+                                  )}
+                                />
+                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center">
+                                  <Eye className="w-6 h-6 text-white" />
+                                </div>
+                              </div>
                             ) : (
-                              <img 
-                                src={`/demo_data/images/IraqJobz/${row[header]}`}
-                                alt="Preview" 
-                                className="w-20 h-20 object-cover rounded border cursor-pointer hover:scale-105 transition-transform"
-                                onClick={() => {
-                                  const newWindow = window.open('', '_blank')
-                                  newWindow.document.write(`
-                                    <html>
-                                      <body style="margin:0; display:flex; justify-content:center; align-items:center; min-height:100vh; background:#000;">
-                                        <img src="/demo_data/images/IraqJobz/${row[header]}" style="max-width:100%; max-height:100%; object-fit:contain;">
-                                      </body>
-                                    </html>
-                                  `)
-                                }}
-                                onError={(e) => {
-                                  e.target.style.display = 'none'
-                                  e.target.nextSibling.style.display = 'flex'
-                                }}
-                              />
+                              <div className="relative group">
+                                <img 
+                                  src={`/demo_data/images/IraqJobz/${row[header]}`}
+                                  alt="Job Preview" 
+                                  className="w-24 h-24 object-cover rounded-lg border-2 border-muted cursor-pointer hover:border-primary hover:scale-105 transition-all duration-200 shadow-sm"
+                                  onClick={() => handleImagePreview(
+                                    `/demo_data/images/IraqJobz/${row[header]}`, 
+                                    `${row['group']} - ${row['sender']}`, 
+                                    row[header]
+                                  )}
+                                  onError={(e) => {
+                                    e.target.style.display = 'none'
+                                    e.target.nextSibling.style.display = 'flex'
+                                  }}
+                                />
+                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center">
+                                  <Eye className="w-6 h-6 text-white" />
+                                </div>
+                                <div className="w-24 h-24 bg-destructive/10 border-2 border-destructive/20 rounded-lg flex flex-col items-center justify-center text-xs text-destructive/70" style={{display: 'none'}}>
+                                  <ImageIcon className="w-8 h-8 mb-1" />
+                                  <span>Missing</span>
+                                </div>
+                              </div>
                             )
                           ) : (
-                            <div className="w-20 h-20 bg-gray-50 border rounded flex items-center justify-center text-xs text-gray-400">
-                              No Image
+                            <div className="w-24 h-24 bg-muted/30 border-2 border-muted/40 rounded-lg flex flex-col items-center justify-center text-xs text-muted-foreground">
+                              <ImageIcon className="w-8 h-8 mb-1 opacity-50" />
+                              <span>No Image</span>
                             </div>
                           )}
-                          <div className="w-20 h-20 bg-gray-100 border rounded flex items-center justify-center text-xs text-red-500" style={{display: 'none'}}>
-                            Image Missing
-                          </div>
                         </div>
                       ) : header === 'text' ? (
                         <div className="max-w-md">
-                          <div className="text-sm whitespace-pre-wrap leading-relaxed max-h-24 overflow-y-auto">
+                          <div className="text-sm leading-relaxed max-h-24 overflow-y-auto bg-muted/10 p-3 rounded border">
                             {/* Highlight search terms */}
                             {searchQuery && row[header]?.toString().toLowerCase().includes(searchQuery.toLowerCase()) ? (
                               <span dangerouslySetInnerHTML={{
                                 __html: row[header].replace(
                                   new RegExp(`(${searchQuery})`, 'gi'),
-                                  '<mark class="bg-yellow-200 dark:bg-yellow-800">$1</mark>'
+                                  '<mark class="bg-yellow-300 dark:bg-yellow-700 px-1 rounded">$1</mark>'
                                 )
                               }} />
                             ) : (
@@ -410,29 +418,62 @@ export function CSVPreviewEnhanced({ data }) {
                           </div>
                         </div>
                       ) : header === 'date' ? (
-                        <div className="text-sm whitespace-nowrap">
-                          {row[header]}
+                        <div className="text-sm font-mono bg-muted/20 px-2 py-1 rounded whitespace-nowrap">
+                          {new Date(row[header]).toLocaleString()}
                         </div>
                       ) : header === 'has_image' ? (
-                        <Badge variant={row[header] === 'TRUE' ? 'default' : 'secondary'}>
-                          {row[header] === 'TRUE' ? 'Has Image' : 'No Image'}
+                        <Badge 
+                          variant={row[header] === 'TRUE' ? 'default' : 'secondary'}
+                          className="font-medium"
+                        >
+                          {row[header] === 'TRUE' ? (
+                            <>
+                              <ImageIcon className="w-3 h-3 mr-1" />
+                              Has Image
+                            </>
+                          ) : (
+                            'No Image'
+                          )}
                         </Badge>
                       ) : header === 'group' ? (
-                        <Badge variant="outline">
+                        <Badge variant="outline" className="font-medium">
+                          <Hash className="w-3 h-3 mr-1" />
                           {row[header]}
                         </Badge>
+                      ) : header === 'sender' ? (
+                        <div className="flex items-center gap-2">
+                          <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
+                            <User className="w-4 h-4 text-primary" />
+                          </div>
+                          <span className="font-medium text-sm">
+                            {searchQuery && row[header]?.toString().toLowerCase().includes(searchQuery.toLowerCase()) ? (
+                              <span dangerouslySetInnerHTML={{
+                                __html: row[header].replace(
+                                  new RegExp(`(${searchQuery})`, 'gi'),
+                                  '<mark class="bg-yellow-300 dark:bg-yellow-700 px-1 rounded">$1</mark>'
+                                )
+                              }} />
+                            ) : (
+                              row[header]
+                            )}
+                          </span>
+                        </div>
+                      ) : header === 'message_id' ? (
+                        <div className="font-mono text-xs bg-muted/20 px-2 py-1 rounded border">
+                          {row[header]}
+                        </div>
                       ) : (
-                        <div className="truncate">
+                        <div className="text-sm">
                           {/* Highlight search terms in other columns too */}
                           {searchQuery && row[header]?.toString().toLowerCase().includes(searchQuery.toLowerCase()) ? (
                             <span dangerouslySetInnerHTML={{
                               __html: row[header].replace(
                                 new RegExp(`(${searchQuery})`, 'gi'),
-                                '<mark class="bg-yellow-200 dark:bg-yellow-800">$1</mark>'
+                                '<mark class="bg-yellow-300 dark:bg-yellow-700 px-1 rounded">$1</mark>'
                               )
                             }} />
                           ) : (
-                            row[header]
+                            <span className="truncate block">{row[header]}</span>
                           )}
                         </div>
                       )}
