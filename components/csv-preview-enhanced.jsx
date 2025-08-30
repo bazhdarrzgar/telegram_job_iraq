@@ -382,10 +382,10 @@ export function CSVPreviewEnhanced({ data }) {
                                   )}
                                   onError={(e) => {
                                     e.target.style.display = 'none'
-                                    e.target.nextSibling.style.display = 'flex'
+                                    e.target.nextSibling.nextSibling.style.display = 'flex'
                                   }}
                                 />
-                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center">
+                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center pointer-events-none">
                                   <Eye className="w-6 h-6 text-white" />
                                 </div>
                                 <div className="w-24 h-24 bg-destructive/10 border-2 border-destructive/20 rounded-lg flex flex-col items-center justify-center text-xs text-destructive/70" style={{display: 'none'}}>
