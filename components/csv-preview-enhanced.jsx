@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useMemo, useCallback } from 'react'
-import { Search, Filter, X, Download, SlidersHorizontal } from 'lucide-react'
+import { Search, Filter, X, Download, SlidersHorizontal, Eye, Image as ImageIcon, Calendar, User, MessageSquare, Hash } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -9,6 +9,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { Checkbox } from '@/components/ui/checkbox'
+import { ImagePreviewModal } from '@/components/image-preview-modal'
 import Fuse from 'fuse.js'
 
 export function CSVPreviewEnhanced({ data }) {
